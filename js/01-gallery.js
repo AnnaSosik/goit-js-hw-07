@@ -1,12 +1,12 @@
-import { galleryItems } from "./gallery-items.js";
+import { galleryItems } from './gallery-items.js';
 // Change code below this line
 
 console.log(galleryItems);
 
 // <-- GALLERY GRID MAP --> //
-const galleryGrid = document.querySelector(".gallery");
+const galleryGrid = document.querySelector('.gallery');
 
-const galleryMap= galleryItems
+const galleryMap = galleryItems
   .map(
     ({ preview, description, original }) =>
       `<div class="gallery__item">
@@ -20,34 +20,36 @@ const galleryMap= galleryItems
         </a>
     </div>`
   )
-  .join("");
+  .join('');
 
 console.log(galleryMap);
 
-galleryGrid.insertAdjacentHTML("beforeend", galleryMap);
+galleryGrid.insertAdjacentHTML('beforeend', galleryMap);
 
-// <-- EVENT IMG ON CLICK --> //
-galleryGrid.addEventListener("click", ImgClick);
+// <-- MODAL-->//
+// <--EVENT "CLICK"/"KEYDOWN"--> //
+
+galleryGrid.addEventListener('click', ImgClick);
 
 function ImgClick(e) {
-  if (e.target.nodeName !== "IMG") {
+  if (e.target.nodeName !== 'IMG') {
     return e.preventDefault;
   }
 
-const modal = basicLightbox.create(
-  `<img src="${e.target.dataset.source}" width="800" height="600">`,
+  const modal = basicLightbox.create(
+    `<img src="${e.target.dataset.source}" width="800" height="600">`,
 
-  {
-    onShow: () => document.addEventListener("keydown", EscKey),
-    onClose: () => document.removeEventListener("keydown", EscKey),
+    {
+      onShow: () => document.addEventListener('keydown', EscKey),
+      onClose: () => document.removeEventListener('keydown', EscKey),
+    }
+  );
+
+  modal.show();
+
+  function EscKey(e) {
+    if (e.code === 'Escape') {
+      modal.close();
+    }
   }
-);
-
-modal.show();
-
-function EscKey(e) {
-  if (e.code === "Escape") {
-    modal.close();
-  }
-}
 }
