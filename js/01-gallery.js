@@ -34,7 +34,7 @@ galleryGrid.addEventListener('click', ImgClick);
 function ImgClick(e) {
   e.preventDefault();
   if (e.target.nodeName !== 'IMG') {
-    return;
+  return;
   }
 
   const modal = basicLightbox.create(
