@@ -32,8 +32,8 @@ galleryGrid.insertAdjacentHTML('beforeend', galleryMap);
 galleryGrid.addEventListener('click', ImgClick);
 
 function ImgClick(e) {
-  preventDefault()
-  if (e.target.nodeName === 'IMG') {
+  preventDefault();
+  if (e.target.nodeName !== 'IMG') {
     return;
   }
 
