@@ -32,8 +32,9 @@ galleryGrid.insertAdjacentHTML('beforeend', galleryMap);
 galleryGrid.addEventListener('click', ImgClick);
 
 function ImgClick(e) {
+  e.preventDefault();
   if (e.target.nodeName !== 'IMG') {
-    return e.preventDefault();
+    return;
   }
 
   const modal = basicLightbox.create(
